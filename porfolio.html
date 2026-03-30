@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Personal Porfolio</title>
+      <!-- <link rel="stylesheet" href="porfolio.css"> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900;&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <style>
+      *{
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background: #080808;
+    color: #fff;
+    
+}
+/* Nav-bar section */
+#header{
+    width: 100%;
+    height: 100vh;
+}
+
+span{
+    color: rgb(138, 17, 17);
+}
+
+.container {
+    padding: 10px 10%;
+}
+
+nav{
+  display: flex;
+  align-items: center; 
+  justify-content: space-around; 
+  flex-wrap: wrap;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 15px 100px; 
+     /* background: none;    */
+}
+
+ #menu-icon {
+/* color: white; */
+font-size: 35px;
+ z-index: 10001;
+cursor: pointer;
+display: none;
+
+}
+.logo{
+    width: 140px;
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 25px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+}
+/* Addition of psuedo element for nav underline */
+nav ul li a::after {
+    content: "";
+    width: 0;      
+    height: 3px;
+    background: #ff004f;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+}
+
+nav ul li a:hover::after {
+width: 100%;
+}
+ 
+/* landing page section */
+.header-text {
+    margin-top: 4%;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* About */
+#about{
+    padding: 80px 0;
+    color: #ababab;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.about-col-1 {
+    flex-basis: 35%;
+}
+
+.about-col-1 img{
+    width: 100%;
+    border-radius: 15px; 
+    /* height: 90vh; */
+    
+}
+
+.about-col-2 {
+    flex-basis: 60%;
+}
+
+.sub-title {
+    font-size: 60px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.sub-title2 {
+    color: white;
+}
+
+.tab-titles {
+    display: flex;
+    margin: 20px 0 40px;
+    color: white;
+}
+.tab-links {
+    margin-right: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+}
+
+.tab-links::after {
+content: "";
+width: 0;
+height: 3px;
+background: #ff004f;
+position: absolute;
+left: 0;
+bottom: -8px;
+transition: 0.5s;
+}
+
+.tab-links.active-link::after {
+    width: 50%;
+}
+
+.tab-content ul li {
+    list-style: none;
+    margin: 12px 0;
+}
+
+.tab-content ul li span{
+    font-size: 14px;
+    color: #946b78;
+}
+/* hidding the skills, experience and educaton */
+.tab-content{
+    display: none;
+}
+
+.tab-content.active-tab{
+    display: block;
+}
+/* -------Services------- */
+#services{
+    padding: 30px 0;
+     margin-bottom: 3rem; 
+
+}
+
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+
+.services-list div {
+    background: #262626;
+    padding: 40px;
+    font-size: 13px;
+    font-weight: 300;
+    border-radius: 10px;
+    transition: background 0.5s, transform 0.5s;
+}
+
+.services-list div i {
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
+.services-list div h2 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.services-list div a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 12px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.services-list div:hover{
+    background: #601e34;
+    transform: translateY(-10px);
+}
+
+/*--------Portfolio----------*/
+.port-h2 {
+display: flex;
+align-items: center;
+justify-content: center;
+  font-size: 60px;
+    font-weight: 600;
+    color: #fff;
+}
+
+#porfolio {
+    padding: 50px 0px;
+}
+
+.work-list {
+   display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px;
+    margin-top: 50px; 
+    
+}
+
+.work {
+border-radius: 10px;
+position: relative;
+overflow: hidden;
+}
+
+.work img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    transition: transform 0.5s;
+    
+}
+
+.layer {
+    width: 100%;
+    height: 0;
+    background: linear-gradient(rgba(0,0,0,0.6), #57172b);
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    font-size: 10px;
+    font-weight:400;
+    transition: height 0.5s;
+}
+
+.layer h3 {
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.layer a {
+    margin-top: 10px;
+    color: #57172b;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 50px;
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    align-items: center;
+
+}
+
+.work:hover img{
+transform: scale(1.1);
+}
+
+.work:hover .layer{
+    height: 100%;
+}
+.btn {
+    display: block;
+    margin: 50px auto;
+    width: fit-content;
+    border: 1px solid  #57172b;
+    padding: 14px 50px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn:hover {
+    background: #57172b;
+}
+
+/* ------------Contact--------- */
+.contact-left {
+    flex-basis: 35%;
+}
+
+.contact-right{
+flex-basis: 60%;
+}
+
+.contact-left p {
+    margin-top: 20px;
+}
+
+.contact-left p i {
+    color: #57172b;
+    margin-right: 15px;
+    font-size: 25px;
+}
+
+.social-icons {
+    margin-top: 20px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    font-size: 30px;
+    margin-right: 15px; 
+    color: #ababab;
+    display: inline-block;
+    transition: transform 0.5s;
+}
+
+.social-icons a:hover{
+    color: #57172b;
+    transform: translateY(-5px);
+}
+
+.btn.btn2 {
+    display: inline-block;
+    background: #57172b;
+}
+
+.contact-right form {
+    width: 100%;
+}
+
+form input, form textarea {
+    width: 100%;
+    border: 0;
+    outline: none;
+    background: #373434;
+    padding: 15px;
+    margin: 15px 0;
+    color: #fff;
+    font-size: 18px;
+}
+
+form .btn2 {
+    padding: 14px 60px;
+    font-size: 18px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.copyright {
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    font-weight: 300;
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+.copyright p i {
+    color: #57172b;
+}
+
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Animation */
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* -------Responsiveness------- */
+/* responsive for tablet */
+ @media (max-width: 1024px) {
+    .header-text {
+       margin-top: 9rem;
+       text-align: center;
+
+    }
+
+    .header-text img {
+     display: none;
+    }
+    .row .about-col-1 img{
+   margin-top: 5rem;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+    .about-col-1,
+    .about-col-2 {
+        flex-basis: 100%;
+    }
+    .row .about-col-1 img{
+        width: 90%;
+    }
+
+    .about-col-2 {
+        margin-top: 2rem;
+    }
+    
+} 
+
+
+/* responsiveness for bigger phone */
+@media (max-width: 768px) {
+    
+  
+  #menu-icon {
+    display: block;
+    }
+
+        nav ul {
+        position: absolute;
+        top: 100%;
+        right: -100%;
+        width: 200px;
+        flex-direction: column;
+        background: #262626;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        transition: 0.2s ease;  
+    }
+    nav.active ul {
+        right: 0;
+    
+    } 
+    .header-text{
+        font-size: 2.4rem;
+        
+    }
+
+    nav{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+}
+    </style>
+</head>
+<body >
+<div id="header">
+
+  <div class="container">
+    <nav>
+      <h2 class="logo"><span>J</span>acinta.</h2>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Porfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="fas fa-bars" id="menu-icon"></div>
+ </nav>
+ <!-- landing page section -->
+  <div class="header-text">
+    <div class="header-text2 fade-up">
+       <p>Web Developer.</p>
+      <h1>Hi, i'm <span>Jacinta</span><br>Chika From Enugu State. </h1>
+    </div>
+    <img src="chi-removebg-preview.png" alt="fair-lady" width="30%" style="margin-right: 5rem;"> 
+  </div>
+  </div>  
+</div>
+    
+<!-- about section -->
+ <div id="about">
+   <div class="container">
+      <div class="row">
+          <div class="about-col-1">
+            <img src="chi4.jpg.jpg" alt="">
+             </div>
+             <div class="about-col-2">
+            <h1 class="sub-title">About Me</h1>
+           <p class="sub-title2">I’m a Full-Stack Web Developer in training, with a strong focus on building clean, responsive, and user-friendly web applications. I enjoy turning ideas into real, functional products using modern web technologies.
+On the frontend, I create visually appealing and mobile-first interfaces using HTML, CSS, JavaScript, and modern layout techniques like Flexbox and Grid. I pay close attention to usability, accessibility, and performance to ensure a smooth user experience across all devices.
+I’m comfortable handling data flow, user interactions, and application logic while following best practices.
+I enjoy problem-solving, learning new technologies, and continuously improving my skills. I’m highly motivated, detail-oriented, and able to work independently or as part of a team. I take pride in writing clean, maintainable code and delivering solutions that meet real-world needs.
+I’m currently seeking opportunities where I can contribute, grow, and build impactful digital solutions.</p>
+<div class="tab-titles">
+   <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+   <p class="tab-links"onclick="opentab('experience')">Experience</p>
+   <p class="tab-links" onclick="opentab('education')">Education</p>
+ </div>
+ <!-- content of the tab-links ..skills -->
+ <div class="tab-content active-tab" id="skills">
+      <ul>
+            <li><span>Frontend Develoment </span> <br>HTML, CSS, JavaScript, Responsive Design</li>
+            <li><span>JavaScript & Problem Solving </span> <br>DOM, Events, Logic, Loops & functions</li>
+            <li><span>backend Develoment</span><br>Node.js, API, Databases</li>
+      </ul>
+ </div>
+ <!-- Experience section-->
+  <div class="tab-content" id="experience">
+      <ul>
+            <li><span>2025-2026-current</span> <br>Full-Stack Web Development training at Digital Dream Academy</li>
+            <li><span>Frontend & Backend Development(Personal Projects) 2026-current</span> <br>Built interactive web apps using HTML, CSS, and JavaScript, <br>impliment DOM manipulation, form validation and event handling</li>
+            <li><span>Web Develoment(Freelance) 2026</span><br>Designed a responsive business website for a local store, added animations and mobile-friendly layouts </li>
+      </ul>
+ </div>
+ <!-- Education section -->
+ <div class="tab-content" id="education">
+      <ul>
+            <li><span>B.Sc (University of Nigeria Nsukka) 2022-2023</span> <br>Agricultural Education</li>
+            <li><span>2025-2026-current</span> <br>Full-Stack Web Development training at Digital Dream Academy</li>
+      </ul>
+         </div>
+       </div>
+    </div>
+   </div>
+ </div>
+<!-----------services-------->
+
+<div id="services">
+     <a href="./carr.html">
+    <div class="container">
+        <h1 class="sub-title">My Services</h1>
+        <div class="services-list">
+           <div>
+             <i class="fa-solid fa-laptop-code"></i>
+              <h2>Car Website</h2>
+              <p>I build responsive and user-friendly car website Using HTML, CSS and JavaScript with clean layouts and Smooth interactions</p>
+             
+           </div>
+           </a>
+           <!--  -->
+             <a href="./crudtable.html">
+           <div>
+            <i class="fa-solid fa-gears"></i>
+              <h2>Crude table</h2>
+              <p>I build responsive and user-friendly crude table Using HTML, CSS and JavaScript with clean layouts and Smooth interactions</p></p>
+           </div>
+           </a>
+           <!--  -->
+            <a href="./hotel website/">
+           <div>
+              <i class="fa-solid fa-briefcase"></i>
+              <h2>Hotel Website</h2>
+              <p> I converted design ideas into real, functional webpages using clean and maintainable code</p>
+           </div>
+           </a>
+        </div>
+    </div>
+</div>
+
+<!-- ---------porfolio-------- -->
+ <div id="porfolio">
+    <div class="container">
+       <h1 class="port-h2">My Work</h1>
+       <div class="work-list">
+         
+          <div class="work">
+            <img src="form.jpg.png" alt="" width="">
+            <div class="layer">
+                <h3>Crud Form</h3>
+                <p>This form allows you to key in your Name, Password and Email, then login your details. It also allows to edit and delete your loging details and update new ones. Download it from github </p>
+                 <a href=""><i class="fa-solid fa-fire"></i></a>
+            </div>
+         </div>
+        
+          <div class="work">
+            <img src="work.jpg.png" alt="" width="">
+            <div class="layer">
+                <h3>Portfolio</h3>
+                <p>One of my first landing page, it a my portfolio which contains my name in full, what i do and the description of my work as a web developer. It contain some buttons and lnks to some of my social media handles. it also have some beautiful animations. click on this link to view it</p>
+                 <a href=""><i class="fa-solid fa-file"></i></i></a>
+            </div>
+         </div>
+         
+          <div class="work">
+            <img src="land2.jpg.jpg" alt="">
+            <div class="layer">
+                <h3>Food landing page</h3>
+                <p> A food landing page titled Your Favorite Food Gets Even Better. Did this for my friend to show my work, it has some login, order now buttons and some hover effects.</p>
+                 <a href=""><i class="fa-solid fa-file"></i></i></a>
+            </div>
+         </div>
+       </div>
+       <a href="./clock.html" class="btn">See more</a>
+   </div>
+ </div>
+
+ <!----------Contact---------->
+ <div id="contact">
+     <div class="container">
+        <div class="row">
+           <div class="contact-left">
+             <h1 class="sub-title">Contact Me</h1>
+             <p><i class="fas fa-paper-plane"></i>jacintauwa12@gmail.com</p>
+             <p><i class="fas fa-phone-square-alt"></i>08141111899</p>
+             <div class="social-icons">
+               <a href="facebook.com/Maryann Diegwu"><i class="fa-brands fa-facebook"></i></a>
+               <a href="https://wa.me/qr/YRLPHHB2WZGRN1"><i class="fa-brands fa-whatsapp"></i></a>
+               <a href="https://www.instagram.com/jacinta.625?igsh=MTU0bHY1aGpxM2o3aA=="><i class="fa-brands fa-instagram"></i></a>
+               <a href="https://www.linkedin.com/in/jacinta-uwadiegwu-128012359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fa-brands fa-linkedin"></i></a>
+             </div>
+             <a href="portfolio.readme" download class="btn btn2">Download CV</a>
+           </div>
+           <div class="contact-right">
+            <form action="">
+            <input type="text" name="Name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="Message" id="" rows="6" placeholder="Your Message"></textarea>
+            <button type="submit" class="btn btn2">submit</button>
+           </form>
+          </div>
+         </div>
+        </div>
+        <div class="copyright">
+            <p>&#169; Jacinta. All Right Reserved<i class="fas fa-heart"></i></p>
+        </div>
+     </div>
+
+ <script>
+  const tablinks = document.getElementsByClassName("tab-links");
+  const tabcontents = document.getElementsByClassName("tab-content");
+  // For skills, experience and edu.contents to be visible when clicked
+  function opentab(tabname){
+    // Remove active from all links
+    for(let tablink of tablinks){
+      tablink.classList.remove("active-link");
+    }
+    // Remove active from all tabs
+    for(let tab of tabcontents){
+      tab.classList.remove("active-tab")
+    }
+    // Add the red underline to exp. and edu.
+    event.currentTarget.classList.add("active-link");
+    // When you click on skill, exp.& edu. it displays it content.
+    document.getElementById(tabname).classList.add("active-tab")
+
+  }
+
+ </script>
+
+ <script>
+  let menu = document.querySelector("#menu-icon");
+ let nav = document.querySelector("nav");
+
+
+ menu.onclick = () => {
+ menu.classList.toggle("fa-xmark");
+ nav.classList.toggle("active");
+ }
+
+
+ window.onscroll = () => {
+ menu.classList.remove("fa-xmark");
+ nav.classList.remove("active");
+ }
+
+ </script>
+</body>
+</html>

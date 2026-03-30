@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>guessing game</title>
+</head>
+<body>
+    <h1>Guess a Number from 1 - 10 </h1>
+    
+
+
+
+    <script>
+//   lets play a  guessing game, you will ask user for a number between 1-10
+// once user enter a number, you will tell user if the enterd number is higher or lower.
+//  with this information, user will change the number and finally guess the right number.
+// you also need to show the number of attempts made by users to reach to this right guess
+// max number
+// min number
+// secret number is a random number between the min and the max
+//  get the prompt from the user as a guess
+// create a variable to store the number of attempt
+// write the logic to check if the guess and the secret number are the same. if not
+// continue a loop to ask again,
+// inside the loop check if the guess is less than the secret or greater than, accordingly tell if the guess is low or high
+// give the option to play again 
+
+
+function guessingGame(){
+    const min = 1;
+    const max = 10;
+    // generate secret number
+    const secretNumber = Math.floor(Math.random() * (max - min + 1
+
+    )) + min;
+
+    let attempts = 0;
+    let guess;
+
+    while (true) {
+        guess = prompt("Guess a number between 1 and 10");
+
+        // if user clicks cancel
+        if (guess === null) {
+            alert("Game cancelled");
+            return;
+        }
+
+        guess = Number(guess);
+        attempts++;
+
+        if(guess < secretNumber){
+            alert("Too low! Try again.");
+        }else if(guess > secretNumber){
+            alert("Too high! Try again");
+
+        }else if (guess === secretNumber){
+            alert("Correct!" + "you guessed the number in " + attempts + " attempts.");
+            break;
+        }else {
+            alert("Please enter a valid number");
+        }
+    }
+
+    // play again
+    const playAgain =prompt("Do you want to play again? (Yes/No)");
+    if(playAgain && playAgain.toLowerCase() === "yes"){
+        guessingGame();
+    }else{
+        alert("Thanks for playing")
+    }
+}
+guessingGame();
+    </script>
+</body>
+</html>

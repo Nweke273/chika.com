@@ -1,0 +1,572 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: sans-serif;
+}
+
+body{
+   background: #0f172a;
+ 
+}
+
+/* Navbar */
+.navbar{
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    padding: 15px 40px;
+    background: transparent;
+    color: #fff;
+}
+
+
+ #menu-icon {
+/* color: white; */
+font-size: 30px;
+ z-index: 10001;
+cursor: pointer;
+  display: none;  
+ }
+
+/* for underline border under the navbar element */
+.nav-links li {
+  list-style: none;
+  position: relative; 
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 5px 0; 
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+/* Create the underline effect */
+.nav-links li a::after {
+  content: "";             
+  position: absolute;       
+  left: 0;
+  bottom: 0;                
+  width: 0;                 
+  height: 3px;            
+  background-color: rgb(132, 90, 11); 
+  transition: width 0.3s ease;
+}
+
+/* Hover effect */
+.nav-links li a:hover::after {
+  width: 100%;             
+}
+/* end of creating an underline on the navbars */
+
+
+
+.logo{
+    font-size: 22px;
+    font-weight: bold;
+}
+.logo span{
+    color:  rgb(132, 90, 11);
+}
+
+.nav-links{
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+/* Hero */
+.hero{
+    height: 90vh;
+    background: 
+    linear-gradient(rgba(0,0,0,0.4),
+    rgba(0,0,0,0.4)),
+    url("./home images/parlor.jpg.jpg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+}
+
+.hero-text h1{
+    font-size: 45px;
+}
+.hero-text p{
+    font-size: 20px;
+    margin: 10px 0;
+    margin-bottom: 1rem;
+}
+
+.btn{
+    background: rgb(132, 90, 11);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    
+}
+
+.btn:hover{
+background: #0f172a;
+color: #fff;
+transform: translateY(-10px);
+}
+
+/* Feature */
+.features{
+    padding: 60px;
+    text-align: center;
+    font-weight: 500;
+  
+}
+
+.features h2{
+color: #fff;
+font-size: 3rem;
+}
+.feature-box{
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin-top: 30px;
+    font-size: 1.5rem;
+}
+
+.feature{
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+}
+/* Room */
+.rooms-preview{
+    padding: 50px;
+    text-align: center;
+}
+
+.rooms-preview h2{
+color: rgb(132, 90, 11);
+font-size: 3.5rem;
+font-weight: 500;
+}
+.room-container{
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    margin-top: 20px;
+}
+.room-card{
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.room-card img{
+width: 100%;
+height: 150px;
+object-fit: cover;
+border-radius: 10px;
+}
+
+/* footer */
+.footer{
+    padding: 30px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-top: 1.7rem;
+    background-color:  rgb(132, 90, 11);
+    box-shadow: 0px 4px 34px rgba(0,0,0, 0.4);
+}
+
+.footer_container{
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    margin-top: .5rem;
+}
+
+.footer__socials{
+margin-top: .5rem;
+}
+
+.footer__logo{
+  margin-bottom: 0.8rem;  
+  color: #0f172a;
+}
+.footer__col ul li{
+    list-style: none;
+}
+.footer__col h4{
+margin-bottom: 0.8rem;
+color: #0f172a;
+}
+
+.contact-icons ul li i{
+color: rgb(132, 90, 11);
+}
+
+/* page title/room page */
+.page-title{
+text-align: center;
+padding: 40px;
+color: #fff;
+font-size: 1rem;
+}
+
+.rooms{
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+}
+
+.room{
+  display: flex;
+  gap: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.room img{
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.room-info{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.room-info span{
+  font-weight: bold;
+  font-size: 18px;
+  color: #fff;
+}
+
+footer p{
+  color : #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+/* Booking foem/booking */
+.booking-section{
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 600px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  
+}
+
+form input, form select{
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+#messge{
+text-align: center;
+margin-top: 20px;
+font-weight: bold;
+}
+
+/* modal */
+.modal{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content{
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* about page */
+.about-section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 40px;
+}
+.about-text h2{
+  margin-bottom: 1rem;
+}
+
+.about-text{
+  max-width: 400px;
+  color: #fff;
+font-size: 1.2rem;
+font-weight: 500;
+}
+
+.about-image img{
+  width: 400px;
+  border-radius: 10px;
+
+}
+.team-section{
+  text-align: center;
+  padding: 50px;
+}
+.team-section h2{
+  color: rgb(134, 100, 15);
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.team-container{
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 20px;
+  color: #0f172a;
+}
+
+.team-card{
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  width: 200px;
+}
+.team-card img{
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* contact page */
+.contact-section{
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  padding:50px;
+}
+
+.contact-section form{
+  width:600px;
+}
+
+.contact-section textarea{
+  height:100px;
+  padding:10px;
+}
+
+.contact-info{
+  max-width:250px;
+  color: #fff;
+  margin-top: 5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+
+}
+
+.contact-info h3{
+margin-bottom: 1rem;
+font-size: 1.5rem;
+}
+
+/* 💻 TABLET (1024px) */
+@media (max-width: 1024px) {
+
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 40px;
+  }
+
+  .hero-text p {
+    font-size: 18px;
+  }
+
+  .feature-box {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .feature {
+    width: 280px;
+  }
+
+  .room-container {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .room-card {
+    width: 280px;
+  }
+
+  .footer_container {
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+
+
+/*  BIG PHONES (900px) */
+
+@media (max-width: 900px) {
+
+  .hero-text h1 {
+    font-size: 35px;
+    text-align: center;
+  }
+
+  .hero-text p {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .feature {
+    width: 45%;
+  }
+
+  .room-card {
+    width: 45%;
+  }
+
+  .footer_container {
+    gap: 20px;
+  }
+}
+
+
+
+/*  MOBILE (768px) */
+
+@media (max-width: 768px) {
+
+  /* Hamburger */
+  #menu-icon {
+    display: block;
+  }
+
+  .navbar {
+    justify-content: space-between;
+    padding: 15px 20px;
+  }
+
+  /* Mobile menu */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    width: 220px;
+    background: #0f172a;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+    transition: 0.3s ease;
+    z-index: 999;
+  }
+
+  .navbar.active .nav-links {
+    right: 0;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+  }
+
+  /* Features */
+  .feature-box {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature {
+    width: 90%;
+  }
+
+  /* Rooms */
+  .room-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .room-card {
+    width: 90%;
+  }
+
+  /* Footer */
+  .footer_container {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+
+
+

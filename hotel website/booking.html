@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bookings</title>
+    <link rel="stylesheet" href="hotel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css" integrity="sha512-kJlvECunwXftkPwyvHbclArO8wszgBGisiLeuDFwNM8ws+wKIw0sv1os3ClWZOcrEB2eRXULYUsm8OVRGJKwGA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+      <!-- Navbar -->
+     <header>
+        <nav class="navbar">
+            <div class="logo">Jessy<span>H</span>otels</div>
+            <ul class="nav-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="rooms.html">Rooms</a></li>
+              <li><a href="booking.html">Bookings</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+              <div class="fas fa-bars" id="menu-icon"></div>
+        </nav>
+     </header>
+
+     <!-- title -->
+      <section class="page-title">
+        <h1>Book Your Stay</h1>
+      </section>
+
+      <!-- Booking form -->
+       <section class="booking-section">
+         <form id="bookingForm">
+            <input type="text" id="name" placeholder="Full Name">
+             <input type="email" id="email" placeholder="Email Address">
+
+                <select id="room">
+             <option value="">Select Room Type</option>
+               <option>Deluxe Room</option>
+               <option>Executive Suite</option>
+               <option>Presidential Suite</option>
+                </select>
+        <input type="date" id="checkin">
+        <input type="date" id="checkout">
+    <button type="submit" class="btn">Confirm Booking</button>
+         </form>
+         <p id="messge"></p>
+       </section>
+
+
+       <!-- Success modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <p id="modal-text"></p>
+    <button onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+       <!-- footer -->
+ <footer class="footer">
+  <div class="section_container footer_container">
+
+    <div class="footer__col">
+      <h3 class="footer__logo">JessyHotels</h3>
+      <p>
+        Discover a world of comfort, <br>luxury and elegance as you <br> explore our hotel rooms.
+      </p>
+
+      <div class="footer__socials">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-youtube"></i>
+        <i class="fab fa-twitter"></i>
+      </div>
+    </div>
+
+    
+    <div class="footer__col">
+      <h4>QUICK LINKS</h4>
+      <ul>
+        <li>Browse Destinations</li>
+        <li>Special Offers & Packages</li>
+        <li>Room Types & Amenities</li>
+        <li>Customer Reviews</li>
+      </ul>
+    </div>
+
+    
+    <div class="footer__col">
+      <h4>CONTACT US</h4>
+      <ul>
+        <li><i class="fa fa-envelope"></i> JessyDelux@gmail.com</li>
+        <li><i class="fa fa-phone"></i > 08141111899</li>
+        <li><i class="fa fa-location-dot"></i> Enugu, Nigeria</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+   <script src="https://unpkg.com/scrollreveal@4"></script>
+        <script src="hotel.js"></script>
+</body>
+</html>

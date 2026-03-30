@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CRUD Table</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial,sans-serif;
+}
+
+body{
+    background: linear-gradient(to right,#067e32,#fff,#0b7b2b);
+}
+
+.container{
+    display:flex;
+    gap:40px;
+    padding:40px;
+    justify-content:center;
+    align-items:flex-start;
+}
+
+.form-section,.table-section{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+form div{
+    margin-bottom:12px;
+}
+
+input[type="text"]{
+    width:100%;
+    padding:8px;
+}
+
+input[type="submit"]{
+    width:100%;
+    padding:10px;
+    background:#067e32;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+table{
+    border-collapse:collapse;
+    width:500px;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#067e32;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- FORM -->
+    <div class="form-section">
+        <form onsubmit="event.preventDefault(); onFormSubmit();">
+
+            <div>
+                <label>Full Name</label>
+                <input type="text" id="fullName">
+            </div>
+
+            <div>
+                <label>EMP Code</label>
+                <input type="text" id="empCode">
+            </div>
+
+            <div>
+                <label>Salary</label>
+                <input type="text" id="salary">
+            </div>
+
+            <div>
+                <label>City</label>
+                <input type="text" id="city">
+            </div>
+
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+
+        </form>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-section">
+        <table id="employeeList">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>EMP Code</th>
+                    <th>Salary</th>
+                    <th>City</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+
+let selectedRow = null;
+
+// LOAD DATA FROM LOCAL STORAGE
+let tableData = JSON.parse(localStorage.getItem("tableData")) || [];
+
+displayTables();
+
+
+// SUBMIT FORM
+function onFormSubmit(){
+
+    let formData = readFormData();
+
+    if(formData === null) return;
+
+    if(selectedRow === null){
+        tableData.push(formData);
+    }else{
+        tableData[selectedRow] = formData;
+        selectedRow = null;
+    }
+
+    localStorage.setItem("tableData", JSON.stringify(tableData));
+
+    displayTables();
+    resetForm();
+}
+
+
+// READ INPUTS + VALIDATION
+function readFormData(){
+
+    let fullName = document.getElementById("fullName").value.trim();
+    let empCode = document.getElementById("empCode").value.trim();
+    let salary = document.getElementById("salary").value.trim();
+    let city = document.getElementById("city").value.trim();
+
+    if(fullName === "" || empCode === "" || salary === "" || city === ""){
+        alert("Please fill all fields!");
+        return null;
+    }
+
+    return { fullName, empCode, salary, city };
+}
+
+
+// DISPLAY TABLE
+function displayTables(){
+
+    let tbody = document.querySelector("#employeeList tbody");
+    tbody.innerHTML = "";
+
+    tableData.forEach((item,index)=>{
+
+        let row = tbody.insertRow();
+
+        row.insertCell(0).innerHTML = item.fullName;
+        row.insertCell(1).innerHTML = item.empCode;
+        row.insertCell(2).innerHTML = item.salary;
+        row.insertCell(3).innerHTML = item.city;
+
+        row.insertCell(4).innerHTML = `
+            <button onclick="onEdit(${index})">Edit</button>
+            <button onclick="onDelete(${index})">Delete</button>
+        `;
+    });
+}
+
+
+// EDIT
+function onEdit(index){
+
+    selectedRow = index;
+
+    document.getElementById("fullName").value = tableData[index].fullName;
+    document.getElementById("empCode").value = tableData[index].empCode;
+    document.getElementById("salary").value = tableData[index].salary;
+    document.getElementById("city").value = tableData[index].city;
+}
+
+
+// DELETE
+function onDelete(index){
+
+    if(confirm("Are you sure?")){
+        tableData.splice(index,1);
+        localStorage.setItem("tableData", JSON.stringify(tableData));
+        displayTables();
+    }
+}
+
+
+// RESET FORM
+function resetForm(){
+    document.getElementById("fullName").value="";
+    document.getElementById("empCode").value="";
+    document.getElementById("salary").value="";
+    document.getElementById("city").value="";
+}
+
+</script>
+
+</body>
+</html>

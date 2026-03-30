@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Listing Page</title>
+<style>
+*,
+*::before,
+*::after {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  --bg-color: silver;
+}
+.body {
+  background-color: var(--bg-color);
+}
+
+.parent-body {
+  width: 100%;
+  min-height: 100vh;
+}
+.parent-container {
+  width: 100%;
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 30x !important;
+  padding-bottom: 50px;
+}
+
+.title {
+  width: 100%;
+  display: flex;
+  flex-shrink: 0px;
+  font-size: 17px;
+  font-family: sans-serif;
+  font-weight: 600;
+  height: 60px;
+  align-items: center;
+  padding-left: 20px;
+  color: rgba(255, 255, 255, 255, 0.6);
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+.product-container {
+  width: fit-content;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  place-items: center;
+  gap: 70px !important;
+}
+
+.product-card {
+  width: 70%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.card-img {
+  gap: 20px;
+  overflow: hidden;
+  transition: all 0.5s linear;
+  position: relative;
+}
+
+.card-img > img {
+  width: 100%;
+  height: 400px;
+  transition: all 0.5s linear;
+}
+.card-img > img:hover {
+  transform: scale(1.2);
+  transition: all 0.5s linear;
+}
+
+.card-title {
+  height: 60px;
+  width: auto;
+  padding-top: 15px;
+  font-weight: 600;
+  color: rgba(0%, 0%, 0%, 0.95);
+}
+.card-price {
+  width: 100%;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 40px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid silver;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.card-price > span {
+  font-weight: 600;
+  font-size: 20px;
+  color: rgba(0%, 0%, 0%, 0.7);
+}
+
+.card-description {
+  font-size: 16px;
+}
+
+.card-price > span:nth-child(2){
+    font-size: 22px;
+    color:black
+}
+
+.card-price > span:nth-child(1){
+    font-size: 19.5px;
+    color:rgba(0%,0%,0%,0.6)
+}
+
+.add-to-cart {
+  position: absolute;
+  z-index: 30;
+  width: 100%;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  bottom: 0px;
+  display: grid;
+  place-items: center;
+}
+
+.add-to-cart > button {
+  height: 30px;
+  width: 60%;
+  border: 0.5px solid silver;
+  border-radius: 5px;
+  font-family: sans-serif;
+  background-color: black;
+  color: #ffffff;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+.cart-sidebar{
+     width:400px;
+     height: 100vh !important;
+     position: fixed;
+     background-color:rgba(255,255,255,1);
+     right:0;  
+     top:0px;
+     z-index: 100;
+     border-left:1px solid rgb(138, 51, 51);
+     display: flex;
+     flex-direction: column;
+     transition: 0.45;
+
+}
+/* .cart.open{
+    right: 0;
+} */
+
+.close{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+.close > span{
+    height: 30px;
+    width:30px;
+    border:1px solid gray;
+    margin-left:10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5 linear ;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+
+.close > span:hover{
+    background-color: black;
+    color: #ffffff;
+    transition: all 0.5 linear ;
+}
+
+
+.sidebar-title{
+     height: 50px;
+     width:100%;
+     border-bottom: 1px solid gray;
+     display: flex;
+     align-items:last baseline;
+     color:rgba(0%,0%,0%,0.7);
+     font-family: sans-serif;
+     font-size: 25px;
+     font-weight: 500;
+     padding-left:10px;
+
+}
+.close-cart{
+    width: 0%;
+    height: 0px;
+    display: none;
+
+}
+
+ .cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+} 
+table,tbody,thead,tr,td,th{
+  border-collapse: collapse;
+  padding:10px 25px;
+}
+
+
+#desc{
+  width:250px !important;
+}
+#img{
+  width:200px !important;
+}
+
+</style>
+</head>
+
+<body>
+ <div class="parent-body">
+        <div class="cart-sidebar">
+         <div class="close">
+            <span>X</span>
+         </div>
+
+         <div class="sidebar-title">
+            Cart 
+         </div>
+
+             <div class="cart-items">
+              <table border="1">
+                 <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th id="img">IMAGE</th>
+                    <th>NAME</th>
+                    <th id="desc">DESC</th>
+                    <th>PRICE</th>
+                    <th>ACTION</th>
+                    
+                  
+                  </tr>
+
+                 </thead>
+                 <tbody>
+
+
+                 </tbody>
+
+            </table>
+            </div>
+  
+        </div>
+        <!-- Product page -->
+      <div class="parent-container">
+        <div class="title">Product Listing Page</div>
+        <div class="product-container">
+          <div class="product-card">
+            <div class="card-img">
+              <div class="add-to-cart">
+                <button type="button">Add to cart</button>
+              </div>
+              <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/52/2258412/1.jpg?7086" alt="handbag" />
+            </div>
+            <div class="card-title">CLUTCH HANDBAG - (PC00123)</div>
+            <div class="card-price">
+              <span>Price</span>
+              <span>$1020.00</span>
+            </div>
+            <div class="card-description">
+              Beautiful black italian leather handbag crafted by LV.
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="card-img">
+              <div class="add-to-cart">
+                <button type="button">Add to cart</button>
+              </div>
+              <img src="https://assets.ajio.com/medias/sys_master/root/20240722/Umm1/669d76936f60443f3195d7e8/-473Wx593H-700213785-pink-MODEL.jpg" alt="handbag" />
+            </div>
+            <div class="card-title">SILVER HANDBAG - (PC00124)</div>
+            <div class="card-price">
+              <span>Price</span>
+              <span>$920.88</span>
+            </div>
+            <div class="card-description">
+              Beautiful silver italian leather handbag crafted by GUCCI.
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="card-img">
+              <div class="add-to-cart">
+                <button type="button">Add to cart</button>
+              </div>
+              <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/05/0192833/2.jpg?2823" alt="shoe_03" />
+            </div>
+            <div class="card-title">COLORFUL SNEAKERS - (PS00125)</div>
+            <div class="card-price">
+              <span>Price</span>
+              <span>$220.99</span>
+            </div>
+            <div class="card-description">
+              Colorful sneakers shoe designed by LV.
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="card-img">
+              <div class="add-to-cart">
+                <button type="button">Add to cart</button>
+              </div>
+              <img src="https://zinko.com.ng/wp-content/uploads/2022/11/12804-9d4f6ece37210374a562916d550bb325.jpg" alt="shoe_03" />
+            </div>
+            <div class="card-title">BLACK CANVAS - (PS00126)</div>
+            <div class="card-price">
+              <span>Price</span>
+              <span>$720.29</span>
+            </div>
+            <div class="card-description">
+              Black canvas shoe designed by MC.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script>
+      
+// Close sidebar
+const closeBtn = document.querySelector(".close");
+const cartSidebar = document.querySelector(".cart-sidebar");
+const productCards = document.querySelectorAll(".product-card");
+const tbody = document.querySelector("tbody");
+
+// Database (cart storage)
+let cartDB = [];
+
+// Close cart
+closeBtn.addEventListener("click", () => {
+  cartSidebar.classList.toggle("close-cart");
+});
+
+// Loop through products
+productCards.forEach((card) => {
+  const button = card.querySelector("button");
+
+  button.addEventListener("click", () => {
+
+    const name = card.querySelector(".card-title").textContent;
+    const priceText = card.querySelector(".card-price span:last-child").textContent;
+    const description = card.querySelector(".card-description").textContent;
+    const img = card.querySelector("img").src;
+
+    const price = parseFloat(priceText.replace("$", ""));
+
+      // Only add once
+       const existingProduct = cartDB.find(item => item.name === name);
+      if (!existingProduct) {
+         cartDB.push({name, price, description, img, quantity:1});
+         button.disabled = true;
+  button.textContent = "Added";
+    // // Check if product already exists
+    // const existingProduct = cartDB.find(item => item.name === name);
+
+    // if(existingProduct){
+    //     existingProduct.quantity += 1;
+    // }else{
+    //     cartDB.push({
+    //         name: name,
+    //         price: price,
+    //         description: description,
+    //         img: img,
+    //         quantity: 1
+    //     });
+     }
+console.log(cartDB)
+    renderCart();
+  });
+});
+
+  
+
+
+// Render cart table
+function renderCart(){
+
+  tbody.innerHTML = "";
+
+  cartDB.forEach((product, index) => {
+
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${index + 1}</td>
+      <td><img src="${product.img}" width="50"></td>
+      <td>${product.name}</td>
+      <td>${product.description}</td>
+      <td>$${product.price}</td>
+      <td>Qty: ${product.quantity}</td>
+      <td>
+        <button class="remove-btn" data-index="${index}">
+        Remove
+        </button>
+      </td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+
+  addRemoveFunction();
+}
+
+
+
+// Remove item
+function addRemoveFunction(){
+
+  const removeButtons = document.querySelectorAll(".remove-btn");
+
+  removeButtons.forEach((btn) => {
+
+    btn.addEventListener("click", () => {
+
+      const index = btn.getAttribute("data-index");
+
+      cartDB.splice(index, 1);
+
+      renderCart();
+
+    });
+
+  });
+
+}
+    </script>
+</body>
+</html>

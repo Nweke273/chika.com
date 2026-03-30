@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(to bottom right, #e9d5ff, #fce7f3, #dbeafe);
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: linear-gradient(to bottom right, #ffffff, #dbeafe);
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+
+    .card:hover {
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(to right, #4f46e5, #9333ea, #ec4899);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .header h1 {
+      font-size: 1.875rem;
+      font-weight: bold;
+      color: white;
+      margin-bottom: 0.25rem;
+    }
+
+    .subtitle {
+      color: #bfdbfe;
+    }
+
+    .btn-add {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: #4f46e5;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s;
+    }
+
+    .btn-add:hover {
+      background: #eef2ff;
+      transform: scale(1.05);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 50;
+    }
+
+    .modal.hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background: linear-gradient(to bottom right, #ffffff, #faf5ff, #fce7f3);
+      border-radius: 0.75rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      max-width: 28rem;
+      width: 100%;
+      padding: 2rem;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-header h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #1f2937;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #9ca3af;
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: 9999px;
+      transition: all 0.2s;
+    }
+
+    .close-btn:hover {
+      color: #4b5563;
+      background: #f3f4f6;
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-group input.input-error {
+      border-color: #ef4444;
+      background-color: #fef2f2;
+    }
+
+    .form-group input.input-error:focus {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    .form-group input.input-success {
+      border-color: #10b981;
+      background-color: #f0fdf4;
+    }
+
+    .form-group input.input-success:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+    .error-message {
+      color: #ef4444;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .error-message.show {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .success-message {
+      color: #059669;
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+
+    .success-message.show {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* Form Actions */
+    .form-actions {
+      display: flex;
+      gap: 0.75rem;
+      padding-top: 1rem;
+    }
+
+    .btn-submit {
+      flex: 1;
+      background: linear-gradient(to right, #4f46e5, #9333ea);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(to right, #4338ca, #7e22ce);
+      transform: scale(1.05);
+    }
+
+    .btn-cancel {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid #d1d5db;
+      color: #374151;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-cancel:hover {
+      background: #f3f4f6;
+      border-color: #9ca3af;
+      transform: scale(1.05);
+    }
+
+    /* Table */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead tr {
+      background: linear-gradient(to right, #eef2ff, #faf5ff, #fce7f3);
+      border-bottom: 2px solid #c7d2fe;
+    }
+
+    thead th {
+      padding: 1rem 1.5rem;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: #4338ca;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    thead th.text-right {
+      text-align: right;
+    }
+
+    tbody {
+      background: white;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #e5e7eb;
+      transition: all 0.2s;
+    }
+
+    tbody tr:hover {
+      background: linear-gradient(to right, #eef2ff, #faf5ff);
+      transform: scale(1.005);
+    }
+
+    tbody td {
+      padding: 1rem 1.5rem;
+      white-space: nowrap;
+    }
+
+    .user-id {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 9999px;
+      background: linear-gradient(to bottom right, #818cf8, #a78bfa);
+      color: white;
+      font-weight: 600;
+      font-size: 0.875rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .username {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #111827;
+    }
+
+    .email {
+      font-size: 0.875rem;
+      color: #4b5563;
+    }
+
+    .password {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      font-family: monospace;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+    }
+
+    .btn-edit,
+    .btn-delete {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: none;
+    }
+
+    .btn-edit {
+      color: #4f46e5;
+    }
+
+    .btn-edit:hover {
+      background: #eef2ff;
+      transform: scale(1.1);
+    }
+
+    .btn-delete {
+      color: #dc2626;
+    }
+
+    .btn-delete:hover {
+      background: #fef2f2;
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(to right, #eef2ff, #faf5ff, #fce7f3);
+      padding: 1rem 2rem;
+      border-top: 1px solid #c7d2fe;
+    }
+
+    .footer p {
+      font-size: 0.875rem;
+      color: #4338ca;
+    }
+
+    .footer span {
+      font-weight: 600;
+      color: #7e22ce;
+    }
+
+    /* Empty State */
+    .empty-state {
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: #6b7280;
+    }
+
+    .empty-state p:first-child {
+      font-size: 1.125rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .empty-state p:last-child {
+      font-size: 0.875rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .btn-add {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .modal-content {
+        padding: 1.5rem;
+      }
+
+      .form-actions {
+        flex-direction: column;
+      }
+
+      table {
+        font-size: 0.875rem;
+      }
+
+      thead th,
+      tbody td {
+        padding: 0.75rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <!-- Header -->
+      <div class="header">
+        <div>
+          <h1>User Management</h1>
+          <p class="subtitle">Manage your user database</p>
+        </div>
+        <button id="addUserBtn" class="btn-add">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Add User
+        </button>
+      </div>
+
+      <!-- Form Modal -->
+      <div id="formModal" class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 id="formTitle">Add New User</h2>
+            <button id="closeModal" class="close-btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <form id="userForm">
+            <!-- Username Field -->
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" placeholder="Enter username">
+              <p class="error-message" id="usernameError"></p>
+              <p class="success-message" id="usernameSuccess"></p>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Enter email">
+              <p class="error-message" id="emailError"></p>
+              <p class="success-message" id="emailSuccess"></p>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" placeholder="Enter password">
+              <p class="error-message" id="passwordError"></p>
+              <p class="success-message" id="passwordSuccess"></p>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+              <button type="submit" class="btn-submit">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span id="submitBtnText">Create</span>
+              </button>
+              <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Password</th>
+              <th class="text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="userTableBody">
+            <!-- Rows will be inserted here by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Footer Stats -->
+      <div class="footer">
+        <p>Total Users: <span id="totalUsers">0</span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initial data
+    let users = [
+      { id: 1, username: 'jacinta', email: 'jacintauwa12@gmail.com', password: 'password123' }
+    ];
+
+    let editingId = null;
+    const touched = {
+      username: false,
+      email: false,
+      password: false
+    };
+
+    // DOM Elements
+    const formModal = document.getElementById('formModal');
+    const userForm = document.getElementById('userForm');
+    const addUserBtn = document.getElementById('addUserBtn');
+    const closeModal = document.getElementById('closeModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const formTitle = document.getElementById('formTitle');
+    const submitBtnText = document.getElementById('submitBtnText');
+    const userTableBody = document.getElementById('userTableBody');
+    const totalUsers = document.getElementById('totalUsers');
+
+    // Form inputs
+    const usernameInput = document.getElementById('username');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    // Error/Success messages
+    const usernameError = document.getElementById('usernameError');
+    const usernameSuccess = document.getElementById('usernameSuccess');
+    const emailError = document.getElementById('emailError');
+    const emailSuccess = document.getElementById('emailSuccess');
+    const passwordError = document.getElementById('passwordError');
+    const passwordSuccess = document.getElementById('passwordSuccess');
+
+    // Validation functions
+    function validateField(field, value) {
+      let error = '';
+
+      if (field === 'username') {
+        if (!value.trim()) {
+          error = 'Username is required';
+        } else if (value.length < 3) {
+          error = 'Username must be at least 3 characters';
+        } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
+          error = 'Username can only contain letters, numbers, and underscores';
+        }
+      }
+
+      if (field === 'email') {
+        if (!value.trim()) {
+          error = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          error = 'Please enter a valid email address';
+        }
+      }
+
+      if (field === 'password') {
+        if (!value) {
+          error = 'Password is required';
+        } else if (value.length < 6) {
+          error = 'Password must be at least 6 characters';
+        } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(value)) {
+          error = 'Password must contain uppercase, lowercase, and number';
+        }
+      }
+
+      return error;
+    }
+
+    function updateFieldValidation(field, value, errorEl, successEl, inputEl) {
+      if (!touched[field]) return;
+
+      const error = validateField(field, value);
+
+      if (error) {
+        inputEl.classList.add('input-error');
+        inputEl.classList.remove('input-success');
+        errorEl.textContent = `⚠ ${error}`;
+        errorEl.classList.add('show');
+        successEl.classList.remove('show');
+      } else if (value) {
+        inputEl.classList.remove('input-error');
+        inputEl.classList.add('input-success');
+        errorEl.classList.remove('show');
+        
+        let successMsg = 'Valid';
+        if (field === 'username') successMsg = '✓ Valid username';
+        if (field === 'email') successMsg = '✓ Valid email';
+        if (field === 'password') successMsg = '✓ Strong password';
+        
+        successEl.textContent = successMsg;
+        successEl.classList.add('show');
+      } else {
+        inputEl.classList.remove('input-error', 'input-success');
+        errorEl.classList.remove('show');
+        successEl.classList.remove('show');
+      }
+    }
+
+    function validateForm() {
+      const username = usernameInput.value;
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      touched.username = true;
+      touched.email = true;
+      touched.password = true;
+
+      updateFieldValidation('username', username, usernameError, usernameSuccess, usernameInput);
+      updateFieldValidation('email', email, emailError, emailSuccess, emailInput);
+      updateFieldValidation('password', password, passwordError, passwordSuccess, passwordInput);
+
+      const usernameErr = validateField('username', username);
+      const emailErr = validateField('email', email);
+      const passwordErr = validateField('password', password);
+
+      return !usernameErr && !emailErr && !passwordErr;
+    }
+
+    // Event Listeners
+    addUserBtn.addEventListener('click', openModal);
+    closeModal.addEventListener('click', resetForm);
+    cancelBtn.addEventListener('click', resetForm);
+
+    usernameInput.addEventListener('input', (e) => {
+      touched.username = true;
+      updateFieldValidation('username', e.target.value, usernameError, usernameSuccess, usernameInput);
+    });
+
+    emailInput.addEventListener('input', (e) => {
+      touched.email = true;
+      updateFieldValidation('email', e.target.value, emailError, emailSuccess, emailInput);
+    });
+
+    passwordInput.addEventListener('input', (e) => {
+      touched.password = true;
+      updateFieldValidation('password', e.target.value, passwordError, passwordSuccess, passwordInput);
+    });
+
+    userForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (!validateForm()) {
+        return;
+      }
+
+      const formData = {
+        username: usernameInput.value,
+        email: emailInput.value,
+        password: passwordInput.value
+      };
+
+      if (editingId) {
+        // Update existing user
+        users = users.map(user => 
+          user.id === editingId 
+            ? { ...formData, id: editingId }
+            : user
+        );
+        editingId = null;
+      } else {
+        // Add new user
+        const newUser = {
+          ...formData,
+          id: users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1
+        };
+        users.push(newUser);
+      }
+
+      resetForm();
+      renderTable();
+    });
+
+    // Close modal when clicking outside
+    formModal.addEventListener('click', (e) => {
+      if (e.target === formModal) {
+        resetForm();
+      }
+    });
+
+    // Functions
+    function openModal() {
+      formModal.classList.remove('hidden');
+      formTitle.textContent = 'Add New User';
+      submitBtnText.textContent = 'Create';
+    }
+
+    function resetForm() {
+      usernameInput.value = '';
+      emailInput.value = '';
+      passwordInput.value = '';
+      
+      touched.username = false;
+      touched.email = false;
+      touched.password = false;
+      
+      usernameInput.classList.remove('input-error', 'input-success');
+      emailInput.classList.remove('input-error', 'input-success');
+      passwordInput.classList.remove('input-error', 'input-success');
+      
+      usernameError.classList.remove('show');
+      usernameSuccess.classList.remove('show');
+      emailError.classList.remove('show');
+      emailSuccess.classList.remove('show');
+      passwordError.classList.remove('show');
+      passwordSuccess.classList.remove('show');
+      
+      formModal.classList.add('hidden');
+      editingId = null;
+    }
+
+    function handleEdit(user) {
+      usernameInput.value = user.username;
+      emailInput.value = user.email;
+      passwordInput.value = user.password;
+      
+      editingId = user.id;
+      
+      touched.username = false;
+      touched.email = false;
+      touched.password = false;
+      
+      usernameInput.classList.remove('input-error', 'input-success');
+      emailInput.classList.remove('input-error', 'input-success');
+      passwordInput.classList.remove('input-error', 'input-success');
+      
+      usernameError.classList.remove('show');
+      usernameSuccess.classList.remove('show');
+      emailError.classList.remove('show');
+      emailSuccess.classList.remove('show');
+      passwordError.classList.remove('show');
+      passwordSuccess.classList.remove('show');
+      
+      formModal.classList.remove('hidden');
+      formTitle.textContent = 'Edit User';
+      submitBtnText.textContent = 'Update';
+    }
+
+    function handleDelete(id) {
+      if (confirm('Are you sure you want to delete this user?')) {
+        users = users.filter(user => user.id !== id);
+        renderTable();
+      }
+    }
+
+    function renderTable() {
+      userTableBody.innerHTML = '';
+      
+      if (users.length === 0) {
+        userTableBody.innerHTML = `
+          <tr>
+            <td colspan="5" class="empty-state">
+              <p>No users found</p>
+              <p>Click "Add User" to create your first user</p>
+            </td>
+          </tr>
+        `;
+      } else {
+        users.forEach(user => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>
+              <span class="user-id">${user.id}</span>
+            </td>
+            <td>
+              <span class="username">${user.username}</span>
+            </td>
+            <td>
+              <span class="email">${user.email}</span>
+            </td>
+            <td>
+              <span class="password">${'•'.repeat(8)}</span>
+            </td>
+            <td>
+              <div class="actions">
+                <button class="btn-edit" onclick="handleEdit(${JSON.stringify(user).replace(/"/g, '&quot;')})" title="Edit user">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                </button>
+                <button class="btn-delete" onclick="handleDelete(${user.id})" title="Delete user">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                </button>
+              </div>
+            </td>
+          `;
+          userTableBody.appendChild(row);
+        });
+      }
+      
+      totalUsers.textContent = users.length;
+    }
+
+    // Initial render
+    renderTable();
+  </script>
+</body>
+</html>

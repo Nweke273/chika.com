@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read More/Read Less</title>
+    <link rel="stylesheet" href="java.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900;&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+
+ 
+
+    <div class="fas fa-bars" id="menu-icon"></div>
+         <nav class="nav">     
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Porfolio</a>
+        <a href="#contact">Contact</a> 
+    </nav> 
+    
+
+
+<!-- <p id="text">Javascript allow you to make website interactive.
+
+    <span class="more">It helps you handle users actions, validate forms, build menue, sliders and much more.
+
+    </span>
+</p> 
+<button id="readBtn">Read More</button>  -->
+
+<!-- show/hide password -->
+<!-- <form action="">
+<input type="password" id="password" placeholder="password">
+<label for="">
+    <input type="checkbox" name="" id="showpass">show password</label> 
+    </form> -->
+
+
+<!-- question and answer -->
+      <!-- <div class="faq">
+     <h3 class="qustion">What is Leanora?</h3>
+     <p class="answer">Leanora is an online learning platform</p>
+    </div>   -->
+
+
+    <!-- monthly/yearly price -->
+     <!-- <button id="monthly">Monthly</button>
+       <button id="yearly">Yearly</button>
+       <h2 id="price">$20</h2> -->
+
+
+<!-- <div class="faq">
+<h3 class="question">What is Javascript?</h3>
+<p class="answer2">Javascript makes a website interactive</p>
+</div> -->
+
+<!-- shopping list app -->
+<!-- <section class="shopping-list-app">
+<h1>Shopping List</h1>
+<p id="paraText">Get it done today</p>
+<input type="text" id="userInput" placeholder="Enter items">
+<button id="addBtn">Add</button>
+<ul id="shoppingList"></ul>
+
+</section> -->
+<!-- <form action="" id="form">
+    <input type="text" id="username" placeholder="Enter username">
+        <input type="text" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Enter password">
+            <p id="error" style="color: red;"></p>
+            <button type="submit">Submit</button>
+</form> -->
+
+
+   <script>
+    const navEl = document.querySelector(".nav")
+    const menu = document.getElementById("menu-icon")
+    menu.addEventListener("click", ()=>{
+     navEl.classList.toggle("active")
+    })
+    
+
+    // Form validation
+//     let error = document.getElementById("error")
+//     const formEl = document.getElementById("form")
+//     formEl.addEventListener("submit", (e) =>{
+// const userInput = document.getElementById("username").value
+// const inputMail = document.getElementById("email").value
+// const passEl = document.getElementById("password").value
+//    error.textContent = "";
+//    if(userInput === ""){
+//     e.preventDefault()
+// error.textContent = "userInput is required"
+// return;
+//    }
+
+//   if(!inputMail.includes("@")){
+//  e.preventDefault()
+// error.textContent = "Enter a valid email"
+// return;
+//    }
+
+//    if(passEl.length <= 6){
+//     e.preventDefault()
+//     error.textContent = "Password must be more than 6 characters"
+//     return
+//    }
+
+
+// })
+
+
+// Readmore/readless
+//   const btn = document.getElementById("readBtn");
+//  const moreText = document.querySelector(".more");
+
+//   btn.addEventListener("click", () => {
+//     moreText.classList.toggle("show")
+
+//      if(moreText.classList.contains("show")) {
+//         btn.innerText = "Read Less";  
+//     }else {
+//          btn.innerText = "Read More";
+//     }
+    
+//   });
+
+
+
+// show/hide password(login and signup forms)
+//  const password = document.getElementById("password");
+//  const checkbox = document.getElementById("showpass");
+
+//  checkbox.addEventListener("change", () => {
+//  if(checkbox.checked) {
+//    password.type = "text";
+//  }else {
+//    password.type = "password"
+//  }
+
+//  });
+
+
+// question and answer
+//   const faq = document.querySelector(".faq");
+//   faq.addEventListener("click", () => {
+//    if (faq.classList.contains("active")) {
+//      faq.classList.remove("active");
+//    }else {
+//        faq.classList.add("active");
+//     }
+//   });
+
+// // Monthly/yearly price
+// const Monthly = document.getElementById("monthly");
+// const yearly = document.getElementById("yearly");
+// const price = document.getElementById("price");
+
+// monthly.addEventListener("click", () => {
+//   price.innerText = "$20 / month";
+// });
+
+
+// yearly.addEventListener("click", () => {
+//   price.innerText = "$200 / year";
+// });
+
+// for (let i = 1; i <= 5; i++){
+//     let btn = 
+//         document.createElement("button");
+//     btn.textContent = "Button " + i;
+//     document.body.appendChild(btn);
+// }
+
+// // for (let i = 1; i <= 20; i++){
+// //   if(i === 7 ) continue;
+// //   if(i === 15) break;
+// //   console.log(i)
+// // }
+
+// // function expression
+
+// let printMe = function(){
+//   console.log(printMe)
+// };
+
+// console.log(printMe);
+
+// function sum(a, b) {
+//   let result = a + b;
+//   // console.log(result);
+// return result;
+// }
+
+// let result = sum(10, 9);
+// // console.log(result);
+
+// function double(x) {
+// return 2*x;
+// };
+
+// console.log(double(result));
+
+// // default parameter
+
+// function calc(a, b=0){
+//   return (2*(a + b))
+// };
+// const resVar = calc(2, 7)
+// console.log(resVar)
+
+
+// rest parameter
+// function calculateThis(x, y, ...rest){
+//  console.log(x, y, rest )
+// }
+ 
+//  calculateThis(1,2,3,4,5,6)
+
+//Nested function
+// function outer(){
+
+// console.log("outer");
+
+// return function inner(){
+//   console.log("inner");
+// }
+//  inner()
+
+// }
+// let callFunc = outer();
+// console.log(callFunc());
+
+// callback function
+
+// function foo(func) {
+//   console.log("foo");
+
+//   func();
+// }
+
+// foo(function(){
+// console.log("buz")
+// }) this
+// || this
+
+// const buz = function() {
+//   console.log("buz")
+// }
+
+// foo(buz);
+
+
+// pure function/side effect
+// let greetMe = "How are you "
+
+// function greet(name){
+// return greetMe  + name;
+// }
+//  console.log(greet("chika?"));
+//  console.log(greet("chika?"));
+
+//   greetMe = "Good morning "
+//  console.log(greet("chika?"));
+//  console.log(greet("chika?"));
+//  console.log(greet("chika?"));
+
+
+//  higher order function
+//  function getCamera(camera){
+//  camera();
+// }
+
+//  getCamera(function(){
+// console.log("Sony")
+//  })
+// // other ways of writing high order function
+//  function returnFunction(){
+//     return function(){
+//         console.log("Hello")
+//     }
+// }
+
+// const retFun = returnFunction();
+// retFun();
+
+// let inter = document.querySelector(".question");
+// let ans = document.querySelector(".answer2");
+
+// inter.addEventListener("click", () => {
+//     ans.classList.toggle("active")
+// })
+
+// facebook app
+// let database = [
+//     {
+//         username: "chika",
+//         password: "jacinta10"
+//     }
+// ];
+
+// let newsFeed = [
+//     {
+//         username: "pascal",
+//         timeline: "so tired from home"
+//     },
+//     {
+// username: "chidi",
+// timeline: "soo pregnant"
+//     }
+// ];
+
+// let userName = prompt("what is your username?");
+// let userPassword = prompt("what is your password?");
+
+// function signIn(user, pass){
+// if(user === database[0].username && pass === database[0].password){
+//     console.log(newsFeed)
+// }else{
+//     alert("sorry, wrong username and password!")
+// }
+    
+// }
+// signIn(userName, userPassword);
+
+
+// let database = [
+//     {
+//         username: "chika",
+//         password: "jacinta10"
+//     },
+//     {
+//         username: "nemerem",
+//         password: "cinta22"
+//     },
+//     {
+//         username: "chika1",
+//         password: "jacinta11"
+//     }
+// ];
+
+// let newsFeed = [
+//     {
+//         username: "pascal",
+//         timeline: "so tired from home"
+//     },
+//     {
+// username: "chidi",
+// timeline: "soo pregnant"
+//     }
+// ];
+
+// function isUserValid(username, password){
+//     for(let i = 0; i < database.length; i++){
+//         if(database[1].username === username && database[1].password === password){
+//             return true;
+//         }
+//     } return false;
+// }
+
+// function signIn(username, password){
+// if(isUserValid(username, password)){
+//     console.log(newsFeed)
+// }else{
+//     alert("sorry, wrong username and password!")
+// }
+    
+// };
+
+// let userName = prompt("what is your username?");
+// let userPassword = prompt("what is your password?");
+
+// signIn(userName, userPassword);
+
+
+// const moreText = document.querySelector(".more");
+// const btn = document.getElementById("readBtn");
+
+// btn.addEventListener("click", ()=> {
+//     moreText.classList.toggle("show");
+
+//     if(moreText.classList.contains("show")){
+//         btn.textContent = "Read Less";
+//     }else{
+//         btn.textContent = "Read More"; 
+//     }
+// })
+
+// Shopping List
+// const button = document.getElementById("addBtn");
+//  const input = document.getElementById("userInput");
+//  const ul = document.getElementById("shoppingList");
+
+// //  Utility: check if input is not empty
+//  const inputIsValid = () =>
+//     input.value.trim().length > 0;
+
+// //  creat append list item
+//  const createListItem = () => {
+//     const li = document.createElement("li");
+//     li.textContent = input.value.trim();
+
+     // Click to delete
+//     li.addEventListener("click", () => {
+//         li.remove();
+//    });
+
+//     ul.appendChild(li);
+//      input.value = "";
+//  };
+
+// //  Handle button click
+//  const addItemAfterClick = () => {
+//     if(inputIsValid()) {
+//         createListItem();
+//      }
+//  };
+
+//  Handle Enter Key 
+//  const addItemAfterKeypress = (event) => 
+//     {
+//     if (event.key === "Enter" && inputIsValid()) {
+//         createListItem();
+//      }
+//  };
+
+// //  Event listeners
+//  button.addEventListener("click", addItemAfterClick);
+//  input.addEventListener("keydown", addItemAfterKeypress);
+
+
+// let oddNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,14,15];
+// for(let i = 0; i < oddNumbers.length; i++){
+//     if(oddNumbers[i] % 2 !== 0) {
+//     console.log(`This is an oddNumber: ${oddNumbers[i]} `)
+
+//     }
+// }
+
+
+// assignment
+// reverse chika to akihc
+// let myName = "chika"
+// let reversed = ""
+
+//  for (let name = myName.length - 1; name >= 0; name--){
+//      reversed += myName[name]
+//  }
+//  console.log(reversed)
+
+// myName.split("").reverse().join();
+// console.log(reversed)
+
+
+// capitalize the first letters of "hello jesus i love you"
+// function capitalizeWords(word) {
+//     return word
+//     .split(" ").map(word => word.charAt(0). toUpperCase() + word.slice(1)
+// )
+// .join(" ");
+
+// }
+
+// let text = "hello jesus thank you ";
+// console.log(capitalizeWords(text));
+
+// write a Javascript  program that returns true if the given number is even, false otherwise
+// let evenNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+// for(let even = 0; even < evenNumbers.length; even++){
+//     if (evenNumbers[even] % 2 === 0){
+//       console.log(evenNumbers[even] + "this is even");
+//     }else{
+//      console.log(evenNumbers[even] + "this is odd");
+//     }
+// }
+
+// Compute the average of all marks use the average to determine a grade based on the given value 
+// Step 1: Store students and marks
+// const students = [
+//   { name: "David", mark: 80 },
+//   { name: "Vinoth", mark: 77 },
+//   { name: "Divya", mark: 88 },
+//   { name: "Ishitha", mark: 95 },
+//   { name: "Thomas", mark: 68 }
+// ];
+
+// // Step 2: Calculate total marks
+// let total = 0;
+
+// for (let i = 0; i < students.length; i++) {
+//   total += students[i].mark;
+// }
+
+// // Step 3: Calculate average
+// const average = total / students.length;
+
+// // Step 4: Determine grade
+// let grade;
+
+// if (average < 60) {
+//   grade = "F";
+// } else if (average < 70) {
+//   grade = "D";
+// } else if (average < 80) {
+//   grade = "C";
+// } else if (average < 90) {
+//   grade = "B";
+// } else {
+//   grade = "A";
+// }
+
+// // Step 5: Output result
+// console.log("Average mark:", average);
+// console.log("Grade:", grade);
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        //   let name = "Jacinta"
+        //  for(0 < name.length-1, name--) {
+        //  console.log(name--)
+        //  }
+         
+
+    //      function reverseName(str){
+    //          return str.split("").reverse().join("");
+
+    //      }
+    //    console.log(reverseName("Jacinta"));
+
+
+    //   function reverseString(str){
+    //      let reverse = "";
+    //     for(let i = str.length-1; i >= 0; i--){
+    //         reverse += str[i]
+
+    //    }
+    //      return reverse;
+    //   }
+    //    console.log(reverseString("jacinta"))
+
+
+
+//   let name = "jacinta chika";
+//   for(let chika = 0; chika < name.length; chika++){
+//      console.log(name[chika])
+//  }
+//   let result = name[0].toUpperCase() + name.slice(1)
+//   console.log(result)
+
+//   let myName = "maryann pascal"
+//   let outCome = myName.split(" ")
+//    console.log(outCome)
+
+
+//  for(let i = 0; i < outCome.length; i++){
+//     outCome[i] = outCome[i][0].toUpperCase() + outCome[i].slice(1)
+//  }
+//      console.log(outCome)
+
+//     // console.log(name[Jacinta])
+
+
+// REDUCE
+    // let arr = [1,2,3,4]
+    // acc = 0+1
+    // acc = 1+2
+    // acc = 3+3
+    // acc = 6+4
+    // acc = 10
+    // let total = arr.reduce((acc, currentValue) => {
+
+    //     return acc + currentValue
+    // }, 0)
+    // console.log(total)
+
+
+    // FILTER
+//  let newList = [4, 7, 8, 9, 10]
+
+//      let filteringData = newList.filter((a) =>{
+//          return a > 3
+//      })
+    
+//     console.log(filteringData)
+
+
+// SORTING
+// let newCall = [-4, 7, 8, 1, 9, 4, 10, 6, 11] etc
+
+//  let arr = [7, -4, 8, 11, 1, 9, 4, 10, 6]
+//  let sorting = arr.sort((a,b) => {
+//     return a - b
+//  })
+// console.log(sorting)
+
+
+// FOREACH
+// let arr = [7, -4, 8, 11, 1, 9, 4, 10, 6, 13]
+// let data = arr.forEach((num, index, newarry) => {
+//      console.log(newarry)
+// })
+
+
+// Flat
+// freeze
+// this
+
+// let classObj = {
+//     name: "mike",
+//     age: "35",
+//     location: "lagos",
+//     siblings: ['john', 'jane', 'sarah'],
+//     callName:()=>{
+//         classObj.siblings.forEach((siblings, index, newstr)=>{
+//   console.log(`Hello ${newstr}, i am ${classObj.name} and i am ${classObj.age} years old. i live in ${classObj.location}`)
+//         })
+           
+    
+//         }
+            
+//     }
+
+
+
+// classObj.callName()
+
+
+
+
+
+
+//  const orders = [
+//   { id: 1, customer: "John", total: 120, status: "completed", items: 3 },
+//   { id: 2, customer: "Jane", total: 80, status: "pending", items: 2 },
+//   { id: 3, customer: "John", total: 200, status: "completed", items: 5 },
+//   { id: 4, customer: "Alice", total: 50, status: "cancelled", items: 1 },
+//   { id: 5, customer: "Jane", total: 150, status: "completed", items: 4 }
+// ];
+// //  1. Total Revenue (Only completed orders)
+//  2. Top Customer by Spending
+//  3. Order Status Summary
+//  4. Sort Customers by Total Spending (Descending)
+
+
+
+ 
+//   const orders = [
+//    { id: 1, customer: "John", total: 120, status: "completed", items: 3 },
+//    { id: 2, customer: "Jane", total: 80, status: "pending", items: 2 },
+//    { id: 3, customer: "John", total: 200, status: "completed", items: 5 },
+//    { id: 4, customer: "Alice", total: 50, status: "cancelled", items: 1 },
+//    { id: 5, customer: "Jane", total: 150, status: "completed", items: 4 }
+//  ]; 
+// // creating a summary object
+// const SummaryObject = orders.reduce((acc, order) =>{
+//     if(!acc[order.status]){
+//         acc[order.status] = 0;
+//     }
+//     acc[order.status] += order.total
+//     return acc;
+// }, {});
+
+// console.log(SummaryObject)
+// // filtering
+//       let filteringOrders = orders.filter((order) =>{
+//          return order.status === "completed";
+//      })
+    
+//     console.log(filteringOrders)
+
+// // Reduce
+//      let totalRevenue = filteringOrders.reduce((sum, order) => {
+//         return sum + order.total
+//      }, 0)
+//      console.log(totalRevenue)
+
+
+    
+//     //  2
+//  const spending = {
+//   John: 320,
+//   Jane: 230,
+//   Alice: 50
+// };
+
+// const topCustomer = Object.entries(spending).reduce((top, [name, amount]) => {
+//   return amount > top.amount ? { name, amount } : top;
+// }, { name: "", amount: 0 });
+
+// console.log(topCustomer.name); 
+
+// // Sorting
+//  let sortCustomers = [
+//   { id: 1, customer: "John", total: 120, status: "completed", items: 3 },
+//   { id: 2, customer: "Jane", total: 80, status: "pending", items: 2 },
+//   { id: 3, customer: "John", total: 200, status: "completed", items: 5 },
+//   { id: 4, customer: "Alice", total: 50, status: "cancelled", items: 1 },
+//   { id: 5, customer: "Jane", total: 150, status: "completed", items: 4 }
+// ]; 
+// let sorting = sortCustomers.sort((a,b) => {
+//     return b.total - a.total
+//  })
+//  console.log(sorting)
+
+
+// function manageOrder(order, action){
+//     console.log("Handling customers  orders for", order.customer);
+//     action(order);
+// }
+// function approveOrder(order){
+//     console.log("Order accepted for", order.customer)
+// }
+// function rejectOrder(order){
+//     console.log("Order rejected for", order.customer)
+// }
+// manageOrder(
+//     {
+//         customer: "Chika", total: 15000
+//     },
+//     approveOrder
+// );
+
+
+// function creatDiscountCalculator(discountRate){
+// return function(productDetails){
+//     const discount = productDetails.amount * discountRate;
+//     const finalPrice = productDetails.amount - discount;
+//     return finalPrice
+//     // console.log("customer:", productDetails.customer);
+//     // console.log("Original price:", productDetails.amount);
+//     // console.log("Final price after discount:", finalPrice)
+// };
+
+// }
+
+// const christMasDiscount = creatDiscountCalculator(0.15)
+// const finalAmount = christMasDiscount(
+//     {
+//         customer: "jacinta", amount: 20000
+//     }
+// )
+// console.log(finalAmount)
+
+
+// function createSubcriptionPlan(basePrice){
+
+// return function(customerDetails){
+// const totalBeforeDiscount = basePrice * customerDetails.months;
+// const discount = totalBeforeDiscount * customerDetails.discountRate;
+// const finalAmount = totalBeforeDiscount - discount
+// return finalAmount
+// }
+
+// }
+// const basicPlan = createSubcriptionPlan(3000);
+// const totalBasic = basicPlan(
+//     {
+//         customer: "jacinta",
+//         months: 6,
+//         discountRate: 0.10
+//   });
+// console.log(totalBasic)
+
+
+// function createSubPlan(basePrice){
+// return function({ customer, months, discountRate = 0}){
+
+
+//        if(months < 1){
+//         return {
+//             error: true,
+//             message: "invalid subcription duration"
+//         };
+//     }
+    
+//     if(discountRate > 0.5){
+//         return {
+//             error: true,
+//             message: "Discount too high"
+//         };
+//     }
+
+//     const costBeforeDiscount = basePrice * months;
+//     const discount = costBeforeDiscount * discountRate;
+//     const finalAmount = costBeforeDiscount - discount;
+
+//     return {
+//         customer,
+//         costBeforeDiscount,
+//         finalAmount
+//     };
+ 
+// };
+// }
+
+//  const basicPlane =  createSubPlan(7000);
+//  const finalBasic = basicPlane({
+//      customer: "Jacinta",
+//      months: 0.9,
+//  }); 
+
+//  console.log(finalBasic)
+
+
+   </script>
+
+
+</body>
+</html>

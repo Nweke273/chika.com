@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.todo.css">
+</head>
+
+<body>
+
+    <div class="todo-container">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <!-- <th>status</th> -->
+                    <th>name</th>
+                    <th>description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>1</td>
+                    <td>Bread</td>
+                    <td>Precious Bread</td>
+                    <td><button class="del">Delete</button> <button class="edit">Edit</button></td>
+                    <td><input type="checkbox" /></td>
+                </tr> -->
+            </tbody>
+        </table>
+
+        <div class="input__container">
+            <form method="post">
+
+                <div class="input__container1">
+                    <input class="user" name="user" type="text" placeholder="name">
+                </div>
+
+                <div class="input__container2">
+                    <input class="description" name="desc" type="text" placeholder="description">
+                </div>
+                <button class="btn">submit</button>
+            </form>
+        </div>
+
+    </div>
+
+
+
+    <script src="todo.script.js"></script>
+</body>
+
+</html>

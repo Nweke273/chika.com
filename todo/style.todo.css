@@ -1,0 +1,97 @@
+@layer subtodo , base;
+ 
+:root{
+    --color:blue;
+}
+body{
+ /* background: linear-gradient(#355872, #7AAACE, #9CD5FF);     */
+}
+@layer base{
+      .todo-container{
+           width: 100% !important;
+           min-height: 100vh;
+           display: flex;
+           flex-direction: column;
+           /* justify-content: center; */
+           align-items: center;
+           flex-shrink: 0;
+           flex-grow: 1;
+           margin-top: 2rem;
+           font-size: 1.5rem;
+    
+
+      }
+
+      table , thead , tr , tbody ,  th , td{
+        border-collapse: collapse;
+        padding:10px 30px;
+        text-transform: capitalize;
+      }
+}
+
+
+@layer subtodo{
+
+}
+
+.input__container{
+    display: inline-block;
+    width: 220px;
+    height: 150px;
+    border: 1px solid gray;
+    margin-top: 4rem;
+    padding: 20px;
+    padding-left: 3rem;
+    background-color: #355872;
+    box-shadow: 4px 5px 34px rgba(0,0,0, 0.1);
+    border-radius: 12px;
+    transition: 1s;
+    
+}
+.input__container:hover{
+    transform: translateX(10px);
+}
+
+.input__container1{
+    margin-bottom: 1rem;
+    
+}
+
+.input__container1 input{
+    border: none;
+    outline: none;
+    width: 200px;
+    height: 30px;
+    border-radius: 4px;
+}
+.input__container1 input::placeholder{
+    font-size: 1rem;
+}
+.input__container2 input{
+    border: none;
+    outline: none;
+    width: 200px;
+    height: 30px;
+    border-radius: 4px;
+}
+.input__container2 input::placeholder{
+    font-size: 1rem;
+}
+.input__container button{
+    margin-top: 1rem;
+    border: none;
+    outline: none;
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    color: rgb(53, 65, 65);
+    transition: 0.2s;
+    cursor: pointer;
+    
+}
+.input__container button:hover{
+    transform: translateY(10px);
+}
+.input__container button::placeholder{
+font-size: 1.5rem;
+}

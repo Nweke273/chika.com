@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        @layer subtodo , base;
+ 
+:root{
+    --color:blue;
+}
+body{
+ /* background: linear-gradient(#355872, #7AAACE, #9CD5FF);     */
+}
+@layer base{
+      .todo-container{
+           width: 100% !important;
+           min-height: 100vh;
+           display: flex;
+           flex-direction: column;
+           /* justify-content: center; */
+           align-items: center;
+           flex-shrink: 0;
+           flex-grow: 1;
+           margin-top: 2rem;
+           font-size: 1.5rem;
+    
+
+      }
+
+      table , thead , tr , tbody ,  th , td{
+        border-collapse: collapse;
+        padding:10px 30px;
+        text-transform: capitalize;
+      }
+}
+
+
+@layer subtodo{
+
+}
+
+.input__container{
+    display: inline-block;
+    width: 220px;
+    height: 150px;
+    border: 1px solid gray;
+    margin-top: 4rem;
+    padding: 20px;
+    padding-left: 3rem;
+    background-color: #355872;
+    box-shadow: 4px 5px 34px rgba(0,0,0, 0.1);
+    border-radius: 12px;
+    transition: 1s;
+    
+}
+.input__container:hover{
+    transform: translateX(10px);
+}
+
+.input__container1{
+    margin-bottom: 1rem;
+    
+}
+
+.input__container1 input{
+    border: none;
+    outline: none;
+    width: 200px;
+    height: 30px;
+    border-radius: 4px;
+}
+.input__container1 input::placeholder{
+    font-size: 1rem;
+}
+.input__container2 input{
+    border: none;
+    outline: none;
+    width: 200px;
+    height: 30px;
+    border-radius: 4px;
+}
+.input__container2 input::placeholder{
+    font-size: 1rem;
+}
+.input__container button{
+    margin-top: 1rem;
+    border: none;
+    outline: none;
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    color: rgb(53, 65, 65);
+    transition: 0.2s;
+    cursor: pointer;
+    
+}
+.input__container button:hover{
+    transform: translateY(10px);
+}
+.input__container button::placeholder{
+font-size: 1.5rem;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="todo-container">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>status</th> 
+                    <th>name</th>
+                    <th>description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>1</td>
+                    <td>Bread</td>
+                    <td>Precious Bread</td>
+                    <td><button class="del">Delete</button> <button class="edit">Edit</button></td>
+                    <td><input type="checkbox" /></td>
+                </tr> -->
+            </tbody>
+        </table>
+
+        <div class="input__container">
+            <form method="post">
+
+                <div class="input__container1">
+                    <input class="user" name="user" type="text" placeholder="name">
+                </div>
+
+                <div class="input__container2">
+                    <input class="description" name="desc" type="text" placeholder="description">
+                </div>
+                <button class="btn">submit</button>
+            </form>
+        </div>
+
+    </div>
+
+
+
+    <script>
+   window.addEventListener('DOMContentLoaded',()=>{
+    let tbody = document.querySelector('tbody')
+    let form = document.querySelector('form')
+
+    let count = 1
+
+    form.addEventListener('submit', handleSubmit)
+
+    function handleSubmit(evt){
+        evt.preventDefault()
+
+        let tr = document.createElement('tr')
+
+        let td_id = document.createElement('td')
+        let td_status = document.createElement('td')
+        let td_name = document.createElement('td')
+        let td_desc = document.createElement('td')
+        let td_action = document.createElement('td')
+
+        td_id.innerHTML = count++
+        td_name.innerHTML = evt.target.user.value   
+        td_desc.innerHTML = evt.target.desc.value   
+        
+        let checkbox = document.createElement('input')
+        checkbox.type = "checkbox"
+        
+        let delBtn = document.createElement('button')
+        delBtn.innerHTML = "Delete"
+
+        delBtn.onclick = function(){
+            tr.remove()
+        }
+
+        
+        let editBtn = document.createElement('button')
+        editBtn.innerHTML = "Edit"
+
+        editBtn.onclick = function(){
+            
+            document.querySelector('.user').value = td_name.innerHTML
+            document.querySelector('.description').value = td_desc.innerHTML
+
+            tr.remove()
+        }
+
+        td_action.appendChild(delBtn)
+        td_action.appendChild(editBtn)
+        td_status.appendChild(checkbox)
+
+        tr.appendChild(td_id)
+        tr.appendChild(td_status)
+        tr.appendChild(td_name)
+        tr.appendChild(td_desc)
+        tr.appendChild(td_action)
+        
+
+        tbody.append(tr)
+
+        form.reset()
+    }
+})
+    </script>
+</body>
+
+</html>

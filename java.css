@@ -1,0 +1,32 @@
+.answer {
+    display: none;
+}
+
+.faq.active .answer {
+    display: block;
+}
+
+
+.answer2 {
+    display: none;
+}
+
+.answer2.active {
+    display: block;
+}
+
+.more{
+    display: none;
+}
+
+.more.show{
+    display: inline;
+}
+
+.nav{
+    display: none;
+}
+
+.nav.active{
+    display: block;
+}

@@ -1,0 +1,2 @@
+"# chika.com"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin https://github.com/Nweke273/chika.com.gitgit push -u origin main
+"# chika.com"  initgit add README.mdgit commit -m "first commit"git branch -M maingit remote add origin https://github.com/Nweke273/chika.com.gitgit push -u origin main
